@@ -6,5 +6,5 @@ import store from '@/store'
 
 ReactDOM.render(
   <Provider store={store}>
-  <Gui />
-</Provider>, document.getElementById('root'))
+    <Gui />
+  </Provider>, document.getElementById('root'))

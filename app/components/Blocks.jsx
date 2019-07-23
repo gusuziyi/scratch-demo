@@ -1,6 +1,6 @@
 import React from 'react';
 import ScratchBlocks from 'scratch-blocks';
-import makeToolboxXML from '../lib/make-toolbox-xml';
+import makeToolboxXML from '@/lib/make-toolbox-xml';
 
 /**
  * scratch blocks 的默认配置
@@ -55,7 +55,7 @@ class Blocks extends React.Component {
 
     render() {
         return (
-            <div style={{height: '100%', width: '70%'}} ref={this.blocks}>
+            <div style={{height: '900px',width: '300px'}} ref={this.blocks}>
             </div>
         )
     }

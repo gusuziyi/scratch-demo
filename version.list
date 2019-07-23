@@ -1,2 +1,3 @@
 v0.10:初始版本
 v0.11:vm可用
+v0.12:vm置入redux中,所有组件均可使用mapStateToProps调用vm

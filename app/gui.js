@@ -1,20 +1,20 @@
 import React from 'react'
-const ScratchStorage = require('scratch-storage');
-const VM = require('scratch-vm');
+import { connect } from 'react-redux'
+// const ScratchStorage = require('scratch-storage')
+// const VM = require('scratch-vm')
 
-const storage = new ScratchStorage();
-const vm = new VM()
-vm.attachStorage(storage)
+// const storage = new ScratchStorage()
+// const vm = new VM()
+// vm.attachStorage(storage)
 
-// import Blocks from './components/Blocks.jsx'
+
+// import Blocks from '@/components/Blocks.jsx'
 class GUI extends React.Component {
   constructor (props) {
     super(props)
   }
   render () {
-    // let {vm} = this.props
-    console.log(vm)
-
+    console.log(this.props.vm)
     return (
       <div className='Gui'>
         hi
@@ -25,9 +25,9 @@ class GUI extends React.Component {
 
 }
 
-// const mapStateToProps = state => {
-//   return {vm: state.gui.vm}
-// }
-// const ConnectedGUI = connect(mapStateToProps)(GUI)
-
-export default GUI
+const mapStateToProps = state => {
+    return {vm: state.vm}
+  }
+const ConnectedGUI = connect(mapStateToProps)(GUI)
+  
+export default ConnectedGUI

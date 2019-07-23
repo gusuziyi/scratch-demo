@@ -35,9 +35,12 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
+    "lodash": "^4.17.15",
+    "lodash.bindall": "^4.4.0",
     "react-redux": "^7.1.0",
     "redux": "^4.0.4",
     "scratch-blocks": "^0.1.0-prerelease.1563803582",
+    "scratch-parser": "^5.0.0",
     "scratch-storage": "^1.3.2",
     "scratch-vm": "^0.2.0-prerelease.20190722173823"
   }

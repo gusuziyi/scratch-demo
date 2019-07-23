@@ -1,6 +1,8 @@
 import React from 'react';
 import ScratchBlocks from 'scratch-blocks';
 import makeToolboxXML from '@/lib/make-toolbox-xml';
+import { connect } from 'react-redux'
+const bindAll = require('lodash.bindall');
 
 /**
  * scratch blocks 的默认配置
@@ -41,6 +43,15 @@ class Blocks extends React.Component {
         super(props);
         this.blocks = React.createRef();
         this.workspace = null;
+        bindAll(this, [
+            'attachVM',
+            'onScriptGlowOn',
+            'onScriptGlowOff',
+            'onBlockGlowOn',
+            'onBlockGlowOff',
+            'onVisualReport',
+            'onWorkspaceUpdate',
+        ]);
     }
 
     componentDidMount () {
@@ -51,14 +62,62 @@ class Blocks extends React.Component {
             {toolbox: toolbox}
         );
         this.workspace = ScratchBlocks.inject(this.blocks.current, workspaceConfig);
+        this.attachVM()
+        console.log(999)
+      
+    }
+    attachVM () {
+        this.workspace.addChangeListener(this.props.vm.blockListener);
+        this.flyoutWorkspace = this.workspace
+            .getFlyout()
+            .getWorkspace();
+        this.flyoutWorkspace.addChangeListener(this.props.vm.flyoutBlockListener);
+        this.props.vm.addListener('SCRIPT_GLOW_ON', this.onScriptGlowOn);
+        this.props.vm.addListener('SCRIPT_GLOW_OFF', this.onScriptGlowOff);
+        this.props.vm.addListener('BLOCK_GLOW_ON', this.onBlockGlowOn);
+        this.props.vm.addListener('BLOCK_GLOW_OFF', this.onBlockGlowOff);
+        this.props.vm.addListener('VISUAL_REPORT', this.onVisualReport);
+        this.props.vm.addListener('workspaceUpdate', this.onWorkspaceUpdate);
+    }
+    onScriptGlowOn (data) {
+        console.log(1,data)
+        this.workspace.glowStack(data.id, true);
+    }
+    onScriptGlowOff (data) {
+        console.log(2,data)
+        this.workspace.glowStack(data.id, false);
+    }
+    onBlockGlowOn (data) {
+        console.log(3,data)
+        this.workspace.glowBlock(data.id, true);
+    }
+    onBlockGlowOff (data) {
+        console.log(4,data)
+        this.workspace.glowBlock(data.id, false);
+    }
+    onVisualReport (data) {
+        console.log(5,data)
+        this.workspace.reportValue(data.id, data.value);
+    }
+    onWorkspaceUpdate (data) {
+        console.log(6,data)
+        ScratchBlocks.Events.disable();
+        this.workspace.clear();
+        const dom = ScratchBlocks.Xml.textToDom(data.xml);
+        ScratchBlocks.Xml.domToWorkspace(dom, this.workspace);
+        ScratchBlocks.Events.enable();
     }
 
     render() {
         return (
-            <div style={{height: '900px',width: '300px'}} ref={this.blocks}>
+            <div style={{height: '900px',width: '900px'}} ref={this.blocks}>
             </div>
         )
     }
 }
 
-export default Blocks;
+const mapStateToProps = state => {
+    return {vm: state.vm}
+  }
+  const ConnectedBlocks = connect(mapStateToProps)(Blocks)
+export default ConnectedBlocks;

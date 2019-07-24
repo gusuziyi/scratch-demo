@@ -26,7 +26,7 @@ class GUI extends React.Component {
         hi
         <Blocks/>
         <Stage vm={vm} />
-        <SpriteLibrary vm={vm} /> 
+        <SpriteLibrary vm={vm} />
       </div>
     )
   }

@@ -7,4 +7,5 @@ v0.14:能够加载sb3工程文件
     - sb3文件无法解析,使用fs.readFile后vm.loadProject无效
 v0.15:能够加载舞台
     -鼠标事件vm报错:scratch-render warn Could not find skin for drawable,skin文件有问题?
-v0.16:加载sprite成功,但是为什么在stage中无法显示?
+v0.16:加载sprite信息成功,但是为什么在stage中无法显示?
+v0.17:获取sprite资源成功,怎么把资源推送到vm中?

@@ -24,7 +24,6 @@ class Stage extends React.Component {
         canvas.addEventListener('mousedown', this.onMouseDown);
     }
     onMouseMove (e) {
-      
         const rect = this.canvas.current.getBoundingClientRect();
         const coordinates = {
             x: e.clientX - rect.left,

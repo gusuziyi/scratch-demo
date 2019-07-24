@@ -110,7 +110,7 @@ class Blocks extends React.Component {
 
     render() {
         return (
-            <div style={{height: '900px',width: '900px'}} ref={this.blocks}>
+            <div style={{height: '900px',width: '600px'}} ref={this.blocks}>
             </div>
         )
     }

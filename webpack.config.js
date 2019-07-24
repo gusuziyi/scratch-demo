@@ -29,6 +29,9 @@ module.exports = {
       '@': path.resolve(__dirname, './app')
     }
   },
+  node: {
+    fs: 'empty'
+  },
   plugins: [
     new CopyWebpackPlugin([{
       from: 'node_modules/scratch-blocks/media',

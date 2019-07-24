@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import Blocks from '@/components/Blocks.jsx'
+import Stage from '@/components/Stage.jsx'
 import emptyProject from '@/lib/empty-project.json'
 
 class GUI extends React.Component {
@@ -10,18 +11,19 @@ class GUI extends React.Component {
   }
   componentDidMount () {
     let {vm} = this.props
-    console.log('11', vm)
+    console.log('21', vm)
     vm.loadProject(emptyProject)
     console.log('22', vm)
     vm.start()
     console.log('33', vm, emptyProject)
   }
   render () {
-    console.log(this.props.vm)
+    let {vm} = this.props
     return (
       <div className='Gui'>
         hi
         <Blocks/>
+        <Stage vm={vm} />
       </div>
     )
   }

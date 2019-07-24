@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 
 import Blocks from '@/components/Blocks.jsx'
 import Stage from '@/components/Stage.jsx'
+import SpriteLibrary from '@/components/SpriteLibrary.jsx'
+
 import emptyProject from '@/lib/empty-project.json'
 
 class GUI extends React.Component {
@@ -24,6 +26,7 @@ class GUI extends React.Component {
         hi
         <Blocks/>
         <Stage vm={vm} />
+        <SpriteLibrary vm={vm} /> 
       </div>
     )
   }

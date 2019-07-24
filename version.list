@@ -3,6 +3,8 @@ v0.11:vm可用
 v0.12:vm置入redux中,所有组件均可使用mapStateToProps调用vm
 v0.13:blocks显示正常
 v0.14:能够加载sb3工程文件
-    - 加载文件后vm中editingtarget属性无法更新,测试是虚拟机中installTarget函数未执行,原因不明
+    - 加载json文件后vm中editingtarget属性无法更新,测试是虚拟机中installTarget函数未执行,原因不明
+    - sb3文件无法解析,使用fs.readFile后vm.loadProject无效
 v0.15:能够加载舞台
     -鼠标事件vm报错:scratch-render warn Could not find skin for drawable,skin文件有问题?
+v0.16:加载sprite成功,但是为什么在stage中无法显示?

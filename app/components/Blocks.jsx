@@ -63,8 +63,6 @@ class Blocks extends React.Component {
         );
         this.workspace = ScratchBlocks.inject(this.blocks.current, workspaceConfig);
         this.attachVM()
-        console.log(999)
-      
     }
     attachVM () {
         this.workspace.addChangeListener(this.props.vm.blockListener);
@@ -96,7 +94,7 @@ class Blocks extends React.Component {
         this.workspace.glowBlock(data.id, false);
     }
     onVisualReport (data) {
-        console.log(5,data)
+        console.log('onVisualReport')
         this.workspace.reportValue(data.id, data.value);
     }
     onWorkspaceUpdate (data) {

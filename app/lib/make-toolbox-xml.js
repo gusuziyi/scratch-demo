@@ -265,6 +265,52 @@ const events = function (isStage) {
     </category>
     `
 }
+const control = function (isStage) {
+  return `
+    <category name="%{BKY_CATEGORY_CONTROL}" id="control" colour="#FFAB19" secondaryColour="#CF8B17">
+        <block type="control_wait">
+            <value name="DURATION">
+                <shadow type="math_positive_number">
+                    <field name="NUM">1</field>
+                </shadow>
+            </value>
+        </block>
+        ${blockSeparator}
+        <block type="control_repeat">
+            <value name="TIMES">
+                <shadow type="math_whole_number">
+                    <field name="NUM">10</field>
+                </shadow>
+            </value>
+        </block>
+        <block id="forever" type="control_forever"/>
+        ${blockSeparator}
+        <block type="control_if"/>
+        <block type="control_if_else"/>
+        <block id="wait_until" type="control_wait_until"/>
+        <block id="repeat_until" type="control_repeat_until"/>
+        ${blockSeparator}
+        <block type="control_stop"/>
+        ${blockSeparator}
+        ${isStage ? `
+            <block type="control_create_clone_of">
+                <value name="CLONE_OPTION">
+                    <shadow type="control_create_clone_of_menu"/>
+                </value>
+            </block>
+        ` : `
+            <block type="control_start_as_clone"/>
+            <block type="control_create_clone_of">
+                <value name="CLONE_OPTION">
+                    <shadow type="control_create_clone_of_menu"/>
+                </value>
+            </block>
+            <block type="control_delete_this_clone"/>
+        `}
+        ${categorySeparator}
+    </category>
+    `
+}
 
 const variables = function () {
   return `
@@ -311,7 +357,7 @@ const makeToolboxXML = function (isStage, targetId, categoriesXML, costumeName =
 
   const everything = [
     xmlOpen,
-
+    control(isStage, targetId), gap,
     looks(isStage, targetId, costumeName, backdropName),
     gap,
     sound(isStage, targetId, soundName),

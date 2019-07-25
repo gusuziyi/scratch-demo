@@ -1,5 +1,5 @@
 v0.10:基本配置
-v0.11:虚拟机vm可用(vm作用:使用虚拟io屏蔽底层差异,使用render屏蔽ui差异,使软件可以跨端,react本质上也是虚拟机,虚拟dom屏蔽设备渲染差异(只有pc浏览器能识别dom,但虚拟dom手机也能解析),native屏蔽底层硬件差异)
+v0.11:虚拟机vm可用(vm作用:使用虚拟io屏蔽底层差异,使用render屏蔽ui差异,使软件可以跨端,react本质上也是虚拟机,虚拟dom屏蔽设备渲染差异(dom只有pc浏览器能识别,但虚拟dom手机也能解析),native屏蔽底层硬件差异)
 v0.12:vm置入redux中,所有组件均可使用mapStateToProps调用vm
 v0.13:blocks显示正常
 v0.14:能够加载sb3工程文件
@@ -10,4 +10,13 @@ v0.15:能够加载舞台
 v0.16:加载sprite信息成功,但是为什么在stage中无法显示?
 v0.17:获取sprite资源成功,怎么把资源推送到vm中??(v0.19已解决)
 v0.18:添加了sb2兼容模式,但是vm初始化出现问题??(v0.19已解决)
-v0.19:将scratch-storage的远程连接设置成http:assset.mit.edu,skin文件能够加载进vm中,进而能够render
+v0.19:可正常加载project,并在stage中渲染skin,将scratch-storage的远程连接设置成http:assset.mit.edu,skin文件能够加载进vm中,进而能够render
+v0.20:虚拟keyBoard可用,为vm映射了space和down按键,stage能够响应blocks的键盘按键事件
+v0.21:解决了导出vm.runtime.targets的问题,注意我们天天用的console.log是个异步函数,比如
+    ```
+    let obj={}; 
+    console.log(obj)  // 输出{a:'abc'}
+    obj.a='abc'
+    ```
+    这在虚拟机中调试会造成巨大的问题,
+    解决方案:1,使用emit发送消息,通过实时监听的方式能够避免这个问题 2,console.log(JSON.stringify(obj)) 3,debugger

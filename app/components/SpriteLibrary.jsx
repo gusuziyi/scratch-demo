@@ -8,7 +8,7 @@ class SpriteLibrary extends React.PureComponent {
   }
   handleItemSelect(index) {
     let {vm} = this.props
-    vm.addSprite(JSON.stringify(spriteLibraryContent[0].json))
+    vm.addSprite(JSON.stringify(spriteLibraryContent[index].json))
     vm
       .renderer
       .draw()
@@ -18,8 +18,9 @@ class SpriteLibrary extends React.PureComponent {
     let sprites = Array.from(spriteLibraryContent)
     return (
       <div>
+        点击图片,新建sprite
         {sprites.map((dataItem, index) => {
-          if (index < 2) {
+          if (index < 5) {
             const iconURL = `https://cdn.assets.scratch.mit.edu/internalapi/asset/${dataItem.md5}/get/`;
             return (< img src = {
               iconURL
@@ -27,6 +28,7 @@ class SpriteLibrary extends React.PureComponent {
             key = {
               index
             }
+            style={{height:'100px',width:'60px'}}
             onClick = {
               this
                 .handleItemSelect

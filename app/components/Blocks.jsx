@@ -100,7 +100,7 @@ class Blocks extends React.Component {
         this.workspace.reportValue(data.id, data.value);
     }
     onWorkspaceUpdate (data) {
-        console.log(6,data)
+        console.log('WorkspaceUpdate event')
         ScratchBlocks.Events.disable();
         this.workspace.clear();
         const dom = ScratchBlocks.Xml.textToDom(data.xml);

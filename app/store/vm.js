@@ -1,11 +1,13 @@
-const ScratchStorage = require('scratch-storage')
 const VM = require('scratch-vm')
 import { SVGRenderer as V2SVGAdapter, BitmapAdapter as V2BitmapAdapter } from 'scratch-svg-renderer'
-
-const storage = new ScratchStorage()
+import storage from '@/lib/storage'
 const vm = new VM()
-console.log(vm,'....')
+
+//在Scratch-render添加远程地址,使vm能够获取mit服务器上的资源文件
+storage.addOfficialScratchWebStores()
 vm.attachStorage(storage)
+
+// 添加sb2支持
 vm.attachV2SVGAdapter(new V2SVGAdapter())
 vm.attachV2BitmapAdapter(new V2BitmapAdapter())
 vm.setCompatibilityMode(true)

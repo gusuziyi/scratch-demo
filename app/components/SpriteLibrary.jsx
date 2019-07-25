@@ -8,14 +8,14 @@ class SpriteLibrary extends React.PureComponent {
   }
   handleItemSelect(index) {
     let {vm} = this.props
-    console.log(index)
     vm.addSprite(JSON.stringify(spriteLibraryContent[0].json))
-    vm.renderer.draw()
+    vm
+      .renderer
+      .draw()
   }
 
   render() {
     let sprites = Array.from(spriteLibraryContent)
-    console.log(sprites)
     return (
       <div>
         {sprites.map((dataItem, index) => {

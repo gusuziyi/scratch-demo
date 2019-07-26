@@ -23,13 +23,12 @@ class GUI extends React.Component {
     console.log(vm)
   }
   render () {
-    let {vm} = this.props
     return (
       <div className='Gui'>
-        hi
+        hi scratch
         <Blocks/>
-        <Stage vm={vm} />
-        <SpriteLibrary vm={vm} />
+        <Stage />
+        <SpriteLibrary />
         <SpriteSelector/>
       </div>
     )

@@ -1,7 +1,8 @@
 const React = require('react');
 const bindAll = require('lodash.bindall');
 const Renderer = require('scratch-render');
-
+import { connect } from 'react-redux'
+import { EPERM } from 'constants';
 class Stage extends React.Component {
     constructor(props){
         super(props)
@@ -87,6 +88,9 @@ class Stage extends React.Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {vm: state.vm}
+  }
+  const ConnectedStage= connect(mapStateToProps)(Stage)
 
-
-module.exports = Stage;
+export default ConnectedStage;

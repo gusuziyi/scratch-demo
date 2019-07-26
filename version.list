@@ -10,7 +10,7 @@ v0.15:能够加载舞台
 v0.16:加载sprite信息成功,但是为什么在stage中无法显示?
 v0.17:获取sprite资源成功,怎么把资源推送到vm中??(v0.19已解决)
 v0.18:添加了sb2兼容模式,但是vm初始化出现问题??(v0.19已解决)
-v0.19:可正常加载project,并在stage中渲染skin,将scratch-storage的远程连接设置成http:assset.mit.edu,skin文件能够加载进vm中,进而能够render
+v0.19:可正常加载project,新建sprite功能可用,并在stage中渲染skin,将scratch-storage的远程连接设置成http:assset.mit.edu,skin文件能够加载进vm中,进而能够render
 v0.20:虚拟keyBoard可用,为vm映射了space和down按键,stage能够响应blocks的键盘按键事件
 v0.21:解决了导出vm.runtime.targets的问题,注意我们天天用的console.log是个异步函数,比如
     ```
@@ -20,3 +20,6 @@ v0.21:解决了导出vm.runtime.targets的问题,注意我们天天用的console
     ```
     这在虚拟机中调试会造成巨大的问题,
     解决方案:1,使用emit发送消息,通过实时监听的方式能够避免这个问题 2,console.log(JSON.stringify(obj)) 3,debugger
+v0.22:选择角色功能可用,但图片缓存问题未解决(新建sprite后才能选择sprite)
+v0.23: 
+    -在sprite-library中选择了sprite之后会触发vm.addSprite函数,我开始以为,执行完add后的onActivateBlocksTab异步函数是缓存customs的,追踪一上午发现这个函数最后改变了redux/edit-tab的值只是改变了标签

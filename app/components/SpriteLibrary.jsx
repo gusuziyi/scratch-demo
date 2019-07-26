@@ -1,16 +1,22 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import spriteLibraryContent from '@/lib/sprites.json';
+import {onStoreSrcSource} from '@/store/srcSource'
 class SpriteLibrary extends React.PureComponent {
     constructor(props) {
         super(props);
     }
     handleItemSelect(index) {
-        let {vm} = this.props;
-        let srcMd5=spriteLibraryContent[index].md5
-        console.log('srcMd5',srcMd5);
+        let {vm,storeSrcSource} = this.props;
+        //请求远程服务器的资源md5,与costumes重名
+        let srcMd5 = spriteLibraryContent[index].md5
+        let srcName = spriteLibraryContent[index].name
+        let srcSource = {
+            srcName,
+            srcMd5
+        }
+        storeSrcSource(srcSource)
         vm.addSprite(JSON.stringify(spriteLibraryContent[index].json));
-
         vm
             .renderer
             .draw();
@@ -46,7 +52,12 @@ class SpriteLibrary extends React.PureComponent {
 }
 
 const mapStateToProps = state => {
-    return {vm: state.vm}
+    return {vm: state.vm, srcSourceList: state.srcSourceList}
 }
-const ConnectedSpriteLibrary = connect(mapStateToProps)(SpriteLibrary)
+const mapDispatchToProps = dispatch => ({
+    storeSrcSource: (srcSource) => dispatch(onStoreSrcSource(srcSource))
+});
+const ConnectedSpriteLibrary = connect(mapStateToProps, mapDispatchToProps)(
+    SpriteLibrary
+)
 export default ConnectedSpriteLibrary

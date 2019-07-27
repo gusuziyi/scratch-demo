@@ -1,5 +1,6 @@
-安装运行
+这是一个从0搭建一个scratch项目的demo , 共有14个分支,每个分支对应了一个小的功能 ,完成了一些srcatch的基本功能,希望对大家能有所帮助
 
+项目安装运行
 ```
 npm install
 npm start
@@ -18,7 +19,7 @@ npm start
          - vm中installTarget属性未更新(v0.19已解决)
          - sb3文件无法解析,使用fs.readFile后vm.loadProject无效(v0.19已解决)
 5. v0.15:能够加载舞台
-    * 舞台是个canvas,上面的角色却可以拖动,神奇,因为在stage监听了鼠标的点击,通过鼠标点的位置在vm中返回角色的实例,然后在拖动时,在最顶层再生成一个canvas,覆盖stage,然后生成动画,当放开时,把顶层canvas最后的状态返回到stage上,这就实现了拖动.我认为这个实现过于复杂,h5中有新的api ondrag类函数,既然能返回vm中角色的实例,那么通过单canvas也应该可以
+    * 舞台是个canvas,上面的角色却可以用鼠标拖动,神奇,因为在stage监听了鼠标的点击,通过鼠标点的位置在vm中返回角色的实例,然后在拖动时,在最顶层再生成一个canvas,覆盖stage,然后生成动画,当放开时,把顶层canvas最后的状态返回到stage上,这就实现了拖动.我认为这个实现过于复杂,h5中有新的api ondrag类函数,既然能返回vm中角色的实例,那么通过单个canvas也应该可以实现类似功能
     * 注意当前版本bug: 
         - 鼠标事件vm报错:scratch-render warn Could not find skin for drawable,
           这是因为加载的skin文件有问题(v0.19已解决)
@@ -32,8 +33,7 @@ npm start
         - vm初始化出现一些问题(v0.19已解决)
 9.  v0.19:可正常加载project,新建sprite功能可用,并可以在stage中渲染skin,scratch-render工作正常
 10. v0.20:虚拟keyBoard可用,为vm映射了space和down按键,stage能够响应blocks的键盘按键事件
-    * 虚拟IO的作用:用于屏蔽底层差异(比如鼠标的点击事件,触摸屏的touch事件,都会在vm中统一映射成一个scratch能识别的key),scratch中自定义了一套key,每个key对应一个sprite动作,虚拟键盘IO建立起了Ascll码与scratch-key之间的联系
-    这里space建的ascll码是32,down键的ascll码是40
+    * 虚拟IO的作用:用于屏蔽底层差异,来实现跨端(比如鼠标的点击事件,触摸屏的touch事件,都会在vm中统一映射成一个scratch能识别的key),scratch中自定义了一套key,每个key对应一个sprite动作,虚拟键盘IO建立起了Ascll码与scratch-key之间的联系, 这里space建的ascll码是32,down键的ascll码是40
 11. v0.21:选择角色功能可用,解决了导出vm.runtime.targets的问题
     * 当点击角色选择界面时,角色会有变化,是因为我们的点击事件改变了vm.editingTarget对象,我们可以在vm.runtime.targets列表中获取所有加载的角色和舞台
     * 注意我们天天用的console.log是个异步函数,比如
@@ -50,4 +50,6 @@ npm start
 13. v0.23: 解决了sprite图片缓存以及重名精灵图片缓存的问题
     * 在sprite-library中选择了sprite之后会触发vm.addSprite函数,我开始以为,执行完add后的onActivateBlocksTab异步函数是缓存customs的,追踪一上午发现这个函数最后改变了redux/edit-tab的值只是改变了标签.所以追踪这个函数根本没有用
     * 解决方案: scratch的这个功能实现过于复杂我没看懂,我的思路是当点击添加时索引资源的md5去服务器上下载,反正在新建时也下载过一遍,浏览器里是有缓存的,最使用redux缓存每次随机生成的target名字和Md5(因为有重名sprite,比如两个苹果vm会当做两个独立的精灵,所以target名字末尾是数字递增的,因此使用名字对sprite进行索引需要使用startsWith函数进行判断,而md5与custom重名,可以作为custom的资源索引),进而就可以在服务器上进行查询了.
-14. v0.24: 我正在解决canvas上精灵拖动的问题,主管找我谈话,告诉我由于水平糟糕,无法通过kpi,我被开除了,在震惊了一分钟之后,我意识到从今往后再也不用做scratch的二次开发了,本着职业道德精神,最近,把我这三周以来所有的scratch二次开发的经验总结了出来,希望能对你有所帮助
+14. v0.24: 我正在解决canvas上精灵拖动的问题,主管找我谈话,告诉我由于水平糟糕,无法通过kpi,我被开除了,在震惊了一分钟之后,我意识到从今往后再也不用做scratch的二次开发了,本着职业道德精神 , 我没有一走了之 , 而是花了一些时间把这三周以来所有的scratch二次开发的经验总结了出来,希望能对你有所帮助
+
+

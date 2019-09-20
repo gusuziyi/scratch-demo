@@ -19,7 +19,7 @@ npm start
          - vm中installTarget属性未更新(v0.19已解决)
          - sb3文件无法解析,使用fs.readFile后vm.loadProject无效(v0.19已解决)
 5. v0.15:能够加载舞台
-    * 舞台是个canvas,上面的角色却可以用鼠标拖动,神奇,因为在stage监听了鼠标的点击,通过鼠标点的位置在vm中返回角色的实例,然后在拖动时,在最顶层再生成一个canvas,覆盖stage,然后生成动画,当放开时,把顶层canvas最后的状态返回到stage上,这就实现了拖动.我认为这个实现过于复杂,h5中有新的api ondrag类函数,既然能返回vm中角色的实例,那么通过单个canvas也应该可以实现类似功能
+    * 舞台是个canvas,但是上面的角色却可以用鼠标拖动,神奇吧,因为在stage监听了鼠标的点击,通过鼠标点的位置在vm中返回角色的实例,然后在拖动时,在最顶层再生成一个canvas,覆盖stage,然后生成动画,当放开时,把顶层canvas最后的状态返回到stage上,这就实现了拖动.我认为这个实现过于复杂,h5中有新的api ondrag类函数,既然能返回vm中角色的实例,那么通过单个canvas也应该可以实现类似功能
     * 注意当前版本bug: 
         - 鼠标事件vm报错:scratch-render warn Could not find skin for drawable,
           这是因为加载的skin文件有问题(v0.19已解决)
